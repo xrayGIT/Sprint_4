@@ -23,6 +23,9 @@ public class MainPage {
     // Кнопка согласия на куки id="rcc-confirm-button"
     private static final By AGREE_WITH_COOKIE_BUTTON = By.id("rcc-confirm-button");
 
+    public static final String TOP_BUTTON = "top_button";
+    public static final String BOTTOM_BUTTON = "bottom_button";
+
     public MainPage(WebDriver driver){
         this.driver = driver;
     }
@@ -38,9 +41,16 @@ public class MainPage {
         return this;
     }
 
-    public void clickTopOrderButton(){
+    public OrderScooterForPage clickOrderButton(String orderButtonPlace){
+        By button;
+        if(orderButtonPlace.equals(TOP_BUTTON)){
+            button = TOP_ORDER_BUTTON;
+        } else if(orderButtonPlace.equals(BOTTOM_BUTTON)){
+            button = BOTTOM_ORDER_BUTTON;
+        }
         WebElement element = new WebDriverWait(driver, TIME_OUT_IN_SECONDS).until(ExpectedConditions.elementToBeClickable(TOP_ORDER_BUTTON));
         element.click();
+        return new OrderScooterForPage(driver);
     }
 
     public void clickBottomOrderButton(){

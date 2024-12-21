@@ -20,7 +20,8 @@ public class FAQelementsTest {
 
     @Parameterized.Parameters
     public static Object[][] getParams() {
-        //Сгенерируй тестовые данные (нам нужно название городов и результат поиска)
+        //проверяем текст ответа на вопрос по индексу. Не стал делать поиск по тексту вопроса,
+        //так как текст вопроса все равно может меняться и не факт что это будет проще с точки зрения дальнейшей поддержки.]
         return new Object[][] {
                 {0, "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
                 {3, "Только начиная с завтрашнего дня. Но скоро станем расторопнее."}
@@ -31,7 +32,6 @@ public class FAQelementsTest {
     public void prerequisites(){
         driver = new ChromeDriver();
     }
-
     @Test
     public void testFAQAnswerHaveRightText(){
         MainPage mainPage = new MainPage(driver);
