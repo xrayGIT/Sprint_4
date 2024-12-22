@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import pageObjModel.MainPage;
 import pageObjModel.OrderAboutScooterRent;
 import pageObjModel.OrderScooterForPage;
@@ -15,18 +16,25 @@ import static pageObjModel.MainPage.TOP_BUTTON;
 @RunWith(Parameterized.class)
 public class E2EorderingTest {
     WebDriver driver;
-    public E2EorderingTest(String orderButtonPlace){
+    public E2EorderingTest(String orderButtonPlace, String address, String metroStation, String rentDuration, String scooterColor){
         this.orderButtonPlace = orderButtonPlace;
+        this.address = address;
+        this.metroStation = metroStation;
+        this.rentDuration = rentDuration;
+        this.scooterColor = scooterColor;
     }
     private final String orderButtonPlace;
-
+    private final String address;
+    private final String metroStation;
+    private final String rentDuration;
+    private final String scooterColor;
 
     @Parameterized.Parameters
     public static Object[][] getParams() {
         //
         return new Object[][] {
-                {TOP_BUTTON},
-                {BOTTOM_BUTTON}
+                {TOP_BUTTON, "г.Москва, улица Большая Полянка, 26с2", "Полянка", "сутки", "чёрный жемчуг"},
+                {BOTTOM_BUTTON, "г.Москва, Русаковская улица, 28с1Б", "Сокольники", "трое суток", "серая безысходность"}
         };
     }
 
@@ -40,17 +48,20 @@ public class E2EorderingTest {
         OrderScooterForPage orderPopup = mainPage.openMainPage()
                 .agreeWithCookie()
                 .clickOrderButton(orderButtonPlace);
+        // выделяю новые переменные для новых окон чтобы проще было читать, будет понятно что здесь тест работает уже с новым popup
+        // но можно сделать и сплошным flow api
         OrderAboutScooterRent orderPopUpAboutScooter = orderPopup.fillName("Иван")
                 .fillSurname("Иванов")
-                .fillAddress("г.Москва, улица Большая Полянка, 26с2")
-                .fillMetroStation("Полянка")
-                .fillPhone("+79992223311")
+                .fillAddress(address)
+                .fillMetroStation(metroStation)
+                .fillPhone("+79998887777")
                 .clickNextButton();
         orderPopUpAboutScooter.selectDeliverDayToday()
-                .setRentDuration("сутки")
-                .selectScooterColor("чёрный жемчуг")
+                .setRentDuration(rentDuration)
+                .selectScooterColor(scooterColor)
                 .clickNextButton()
-                .clickYesButton();
+                .clickYesButton()
+                .checkTextInSubmitedPopup();
     }
 
     @After
