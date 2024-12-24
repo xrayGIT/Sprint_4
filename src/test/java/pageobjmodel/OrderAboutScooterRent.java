@@ -1,4 +1,4 @@
-package pageObjModel;
+package pageobjmodel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ public class OrderAboutScooterRent {
     private final WebDriver driver;
     OrderAboutScooterRent(WebDriver driver){
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
     }
 
     // Когда привезти заказ

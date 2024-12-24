@@ -5,18 +5,16 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import pageObjModel.MainPage;
-import pageObjModel.OrderAboutScooterRent;
-import pageObjModel.OrderScooterForPage;
+import pageobjmodel.MainPage;
+import pageobjmodel.OrderAboutScooterRent;
+import pageobjmodel.OrderScooterForPage;
 
-import static pageObjModel.MainPage.BOTTOM_BUTTON;
-import static pageObjModel.MainPage.TOP_BUTTON;
+import static pageobjmodel.MainPage.BOTTOM_BUTTON;
+import static pageobjmodel.MainPage.TOP_BUTTON;
 
 @RunWith(Parameterized.class)
-public class E2EorderingTest {
-    WebDriver driver;
-    public E2EorderingTest(String orderButtonPlace, String address, String metroStation, String rentDuration, String scooterColor){
+public class E2eOrderingTest extends AbstractWebTest {
+    public E2eOrderingTest(String orderButtonPlace, String address, String metroStation, String rentDuration, String scooterColor){
         this.orderButtonPlace = orderButtonPlace;
         this.address = address;
         this.metroStation = metroStation;
@@ -38,10 +36,6 @@ public class E2EorderingTest {
         };
     }
 
-    @Before
-    public void prerequisites(){
-        driver = new ChromeDriver();
-    }
     @Test
     public void testSubmitOrderE2E(){
         MainPage mainPage = new MainPage(driver);
@@ -63,13 +57,5 @@ public class E2EorderingTest {
                 .clickYesButton()
                 .checkTextInSubmitedPopup();
     }
-
-    @After
-    public void after(){
-        driver.quit();
-    }
-
-
-
 
 }

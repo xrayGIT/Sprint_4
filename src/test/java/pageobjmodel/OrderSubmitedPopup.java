@@ -1,4 +1,4 @@
-package pageObjModel;
+package pageobjmodel;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -10,7 +10,6 @@ public class OrderSubmitedPopup {
     private final WebDriver driver;
     OrderSubmitedPopup(WebDriver driver){
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
     private static final By MAIN_POPUP_TEXT = By.xpath(".//div[@class='Order_ModalHeader__3FDaJ']");
 

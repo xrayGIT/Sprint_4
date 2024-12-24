@@ -1,4 +1,4 @@
-package pageObjModel;
+package pageobjmodel;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainPage {
     public static final int TIME_OUT_IN_SECONDS = 3;
@@ -28,6 +30,7 @@ public class MainPage {
 
     public MainPage(WebDriver driver){
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
     public MainPage openMainPage(){

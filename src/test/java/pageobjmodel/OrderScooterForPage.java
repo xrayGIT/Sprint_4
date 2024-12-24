@@ -1,4 +1,4 @@
-package pageObjModel;
+package pageobjmodel;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -10,7 +10,6 @@ public class OrderScooterForPage {
     private final WebDriver driver;
     OrderScooterForPage(WebDriver driver){
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
     // Имя
     private static final By NAME_INPUT = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and contains(@placeholder, 'Имя')]");
